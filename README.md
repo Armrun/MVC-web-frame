@@ -13,7 +13,6 @@ A lightweight Python Web **MVC** framework built on top of **Socket** system cal
 - Wraps requests into `Request` **objects** for use in the framework
 - Built-in thread pool for handling **concurrent connections**
 
----
 
 ## 🧱 MVC Architecture
 
@@ -35,17 +34,15 @@ A lightweight Python Web **MVC** framework built on top of **Socket** system cal
 - Supports **decorators** to register view functions and apply permission checks
 - Routing supports regex matching and parameter binding
 
----
 
 ## ✨ Framework Features
 
-- ✅ Routing decorators for controllers
+- ✅ Routing and Permission-check decorators for controllers
+- ✅ ORM supporting **transaction** management, **Join** and relational mapping, **Auto-generates** database tables and compatible with **MySQL** with **Expressive query syntax**
 - ✅ Supports HTML / JSON / Form / Redirect / Error responses
-- ✅ Session management system
-- ✅ Permission-check decorators
 - ✅ Static file serving (CSS / JS / images, etc.)
 
----
+
 
 ## 🧰 Tech Stack
 
@@ -53,11 +50,8 @@ A lightweight Python Web **MVC** framework built on top of **Socket** system cal
 - Jinja2 template engine
 - MySQL support via custom ORM abstraction
 
----
 
 ## 📦 Example: Running the Project
-
-### 🚀 Getting Started
 
 ```bash
 # Install dependencies

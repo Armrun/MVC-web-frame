@@ -2,16 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>修改 comment 的页面</title>
+    <title>Edit Comment Page</title>
+    <style>
+        body {
+          background-color: #1e1e1e; /* 深灰色背景 */
+          color: #f5f5f5;            /* 浅灰/白色字体 */
+          font-family: sans-serif;
+          margin: 0;
+          padding: 2rem;
+        }
+        a {
+          color: #87cefa;            /* 浅蓝色链接 */
+        }
+    </style>
 </head>
 <body>
-    <h1>修改 comment</h1>
+    <h1>Edit Comment</h1>
     <form action="/comment/update" method="post">
         <input hidden="hidden" name="id" placeholder="id" value="{{ comment.id }}"></input>
         <br>
         <input name="content" placeholder="content" value="{{  comment.content }}"></input>
         <br>
-        <button>提交修改</button>
+        <button>Submit</button>
     </form>
 </body>
 </html>

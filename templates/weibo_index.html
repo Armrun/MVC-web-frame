@@ -5,35 +5,48 @@
     <title>weibo</title>
     <style>
         .comment {
-            border: 1px red solid;
+            border: 1px #f5f5f5 solid;
+        }
+        body {
+          background-color: #1e1e1e; /* 深灰色背景 */
+          color: #f5f5f5;            /* 浅灰/白色字体 */
+          font-family: sans-serif;
+          margin: 0;
+          padding: 2rem;
+        }
+        a {
+          color: #87cefa;            /* 浅蓝色链接 */
         }
     </style>
 </head>
 <body>
+<a href="/">Index</a>
+
 <form action="/weibo/add" method="post">
     <input name="content">
     <br>
-    <button type="submit">发表新微博</button>
+    <button type="submit">Add a New Weibo</button>
 </form>
 
 {% for w in weibos %}
     <p>
         {{ w.content }} from {{ user.username }}
-        <a href="/weibo/delete?id={{ w.id }}">删除</a>
-        <a href="/weibo/edit?id={{ w.id }}">修改</a>
+        <a href="/weibo/delete?id={{ w.id }}">Delete</a>
+        <a href="/weibo/edit?id={{ w.id }}">Edit</a>
         {% for c in w.comments() %}
             <div class="comment">
                 {{ c.user().username }} : {{ c.content }}
-                <a href="/comment/delete?id={{ c.id }}">删除</a>
-                <a href="/comment/edit?id={{ c.id }}">修改</a>
+                <a href="/comment/delete?id={{ c.id }}">Delete</a>
+                <a href="/comment/edit?id={{ c.id }}">Edit</a>
             </div>
         {% endfor %}
     <form action="/comment/add" method="post">
         <input type="hidden" name="weibo_id" value="{{ w.id }}">
         <input name="content">
         <br>
-        <button type="submit">添加评论</button>
+        <button type="submit">Add comment</button>
     </form>
+    ---------------------------------------------------------------
     </p>
 {% endfor %}
 </body>

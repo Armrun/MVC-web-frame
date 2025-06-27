@@ -2,15 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>主页</title>
+    <title>Main Page</title>
+    <style>
+        body {
+          background-color: #1e1e1e; /* 深灰色背景 */
+          color: #f5f5f5;            /* 浅灰/白色字体 */
+          font-family: sans-serif;
+          margin: 0;
+          padding: 2rem;
+        }
+        a {
+          color: #87cefa;            /* 浅蓝色链接 */
+        }
+    </style>
 </head>
 <body>
     <h1>Hello {{username}}</h1>
+    <img src="/static?file=default.gif"/>
+    <br>
     <a href="/user/register/view">Register</a>
     <a href="/user/login/view">Login</a>
     <a href="/weibo/index">Weibo</a>
-    <img src="/static?file=doge.gif"/>
-    <img src="/static?file=doge1.gif"/>
-    <img src="/static?file=doge2.gif"/>
 </body>
 </html>

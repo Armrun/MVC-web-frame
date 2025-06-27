@@ -23,7 +23,7 @@ def response_for_path(request):
     r.update(user_routes())
     r.update(public_routes())
     response = r.get(request.path, error)
-    log('路由分发 <{}> -> <{}>'.format(request.path, response))
+    log('Router Mapping <{}> -> <{}>'.format(request.path, response))
     return response(request)
 
 
@@ -34,9 +34,9 @@ def request_from_connection(connection):
         r = connection.recv(buffer_size)
         request += r
         # 取到的数据长度不够 buffer_size 的时候，说明数据已经取完了。
-        if len(r) < buffer_size:
+        if buffer_size > len(r) > 0:
             request = request.decode()
-            log('HTTP 请求: <{}>'.format(request.encode()))
+            log('HTTP Request: <{}>'.format(request.encode()))
             return request
 
 
@@ -47,7 +47,7 @@ def process_request(connection):
         request = Request(r)
         # 用 response_for_path 函数来得到 path 对应的响应内容
         response = response_for_path(request)
-        log("HTTP 响应:\n <{}>".format(response))
+        log("HTTP Response:\n <{}>".format(response))
         # 把响应发送给客户端
         connection.sendall(response)
 
@@ -58,10 +58,10 @@ def run(host, port):
     """
     # 初始化数据库
     SQLModel.init_db()
-    log('数据库链接初始化 <{}>'.format(SQLModel.connection.host_info))
+    log('DB Connection init <{}>'.format(SQLModel.connection.host_info))
     # 初始化 socket 套路
     # 使用 with 可以保证程序中断的时候正确关闭 socket 释放占用的端口
-    log('开始运行于 http://{}:{}'.format(host, port))
+    log('Server run at: http://{}:{}'.format(host, port))
     with socket.socket() as s:
         s.bind((host, port))
         # 监听 接受 读取请求数据 解码成字符串
@@ -70,7 +70,7 @@ def run(host, port):
         while True:
             connection, address = s.accept()
             # 第二个参数类型必须是 tuple
-            log('请求地址 {}'.format(address))
+            log('Request URL {}'.format(address))
             _thread.start_new_thread(process_request, (connection,))
 
 

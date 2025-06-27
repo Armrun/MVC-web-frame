@@ -20,8 +20,9 @@ def recreate_table(cursor):
 def recreate_database():
     connection = pymysql.connect(
         host='localhost',
+        port=config.db_port,
         user='root',
-        password=secret.mysql_password,
+        password=secret.mysql_password
         charset='utf8mb4',
         cursorclass=pymysql.cursors.DictCursor
     )
@@ -49,7 +50,7 @@ def test_data():
     SQLModel.init_db()
 
     form = dict(
-        username='gua',
+        username='a user name',
         password='123',
         role=UserRole.normal,
     )
@@ -68,4 +69,4 @@ def test_data():
 
 if __name__ == '__main__':
     recreate_database()
-    test_data()
+    # test_data()

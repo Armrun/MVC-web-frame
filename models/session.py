@@ -26,7 +26,7 @@ class Session(SQLModel):
     def expired(self):
         now = time.time()
         result = self.expired_time < now
-        log('session 过期', result, self.expired_time, now)
+        log('session outdated', result, self.expired_time, now)
         return result
 
     @classmethod

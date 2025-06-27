@@ -15,12 +15,12 @@ class Request(object):
         self.path = ""
         self.query = {}
         self.parse_path(path)
-        log('HTTP 请求 path 和 query', self.path, self.query)
+        log('HTTP Request - path and query', self.path, self.query)
 
         self.headers = {}
         self.cookies = {}
         self.add_headers(h[1:])
-        log('HTTP 请求 headers 和 cookies', self.headers, self.cookies)
+        log('HTTP Request - headers and cookies', self.headers, self.cookies)
 
     def add_headers(self, header):
         """
@@ -46,7 +46,7 @@ class Request(object):
         for arg in args:
             k, v = arg.split('=')
             f[k] = v
-        log('form() 字典', f)
+        log('form() content:', f)
         return f
 
     def parse_path(self, path):

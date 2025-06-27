@@ -49,19 +49,19 @@ def current_user(request):
         session_id = request.cookies['session_id']
         s = Session.one(session_id=session_id)
         if s is None or s.expired():
-            log('当前用户：游客')
+            log('User Now：Guest')
             return User.guest()
         else:
             user_id = s.user_id
             u = User.one(id=user_id)
             if u is None:
-                log('当前用户：游客')
+                log('User Now：Guest')
                 return User.guest()
             else:
-                log('当前用户：<{}>'.format(u.username))
+                log('User Now：<{}>'.format(u.username))
                 return u
     else:
-        log('当前用户：游客')
+        log('User Now：Guest')
         return User.guest()
 
 
@@ -135,10 +135,10 @@ def login_required(route_function):
         log('login_required')
         u = current_user(request)
         if u.is_guest():
-            log('游客用户需要登陆')
+            log('Guest need to login')
             return redirect('/user/login/view')
         else:
-            log('已经登录用户', route_function)
+            log('User has login', route_function)
             return route_function(request)
 
     return f

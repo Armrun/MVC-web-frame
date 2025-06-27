@@ -30,8 +30,8 @@ class User(SQLModel):
 
         form = dict(
             role=UserRole.guest,
-            username='【游客】',
-            password='【游客】',
+            username='【Guest】',
+            password='【Guest】',
         )
         u = User(form)
         return u
@@ -51,10 +51,10 @@ class User(SQLModel):
         salted = cls.salted_password(form['password'])
         u = User.one(username=form['username'], password=salted)
         if u is not None:
-            result = '登录成功'
+            result = 'login successful'
             return u, result
         else:
-            result = '用户名或者密码错误'
+            result = 'user name or password error'
             return User.guest(), result
 
     @classmethod
@@ -62,9 +62,10 @@ class User(SQLModel):
         valid = len(form['username']) > 2 and len(form['password']) > 2
         if valid:
             form['password'] = cls.salted_password(form['password'])
+            form['role'] = "normal"
             u = User.new(form)
-            result = '注册成功<br> <pre>{}</pre>'.format(User.all())
+            result = 'Sign Up Successful<br> <pre>{}</pre>'.format(User.all())
             return u, result
         else:
-            result = '用户名或者密码长度必须大于2'
+            result = 'The length of user name of password must longer than 2'
             return User.guest(), result

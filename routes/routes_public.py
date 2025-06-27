@@ -17,7 +17,7 @@ def static(request):
     """
     静态资源的处理函数, 读取图片并生成响应返回
     """
-    filename = request.query.get('file', 'doge.gif')
+    filename = request.query.get('file', 'default.gif')
     path = 'static/' + filename
     with open(path, 'rb') as f:
         header = b'HTTP/1.x 200 OK\r\nContent-Type: image/gif\r\n\r\n'

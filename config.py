@@ -1,1 +1,2 @@
-db_name = 'web7'
+db_name = 'weibo'
+db_port = 3306

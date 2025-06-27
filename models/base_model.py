@@ -14,6 +14,7 @@ class SQLModel(object):
     def init_db(cls):
         cls.connection = pymysql.connect(
             host='localhost',
+            port=config.db_port,
             user='root',
             password=secret.mysql_password,
             db=config.db_name,
@@ -28,7 +29,7 @@ class SQLModel(object):
 
     @classmethod
     def table_name(cls):
-        return '`{}`'.format(cls.__name__)
+        return '`{}`'.format(cls.__name__.lower())
 
     @classmethod
     def new(cls, form):
@@ -159,9 +160,7 @@ class SQLModel(object):
     def __repr__(self):
         """
         __repr__ 是一个魔法方法
-        简单来说, 它的作用是得到类的 字符串表达 形式
-        比如 print(u) 实际上是 print(u.__repr__())
-        不明白就看书或者 搜
+        print(u) 实际上是 print(u.__repr__())
         """
         name = self.__class__.__name__
         properties = ['{}: ({})'.format(k, v) for k, v in self.__dict__.items()]

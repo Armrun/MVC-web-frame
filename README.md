@@ -3,7 +3,6 @@
 A lightweight Python Web MVC framework built on top of low-level Socket and HTTP protocols. It supports core features such as custom routing, template rendering, ORM-based database access, and concurrent request handling — ideal for learning web architecture fundamentals and backend engineering design.
 
 ![Demo](https://github.com/Armrun/MVC-web-frame/blob/master/static/webframework.gif?raw=true)
----
 
 
 ## 🌐 HTTP Server

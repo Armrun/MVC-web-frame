@@ -1,19 +1,71 @@
-# MVC-web--frame 
-*自制的 MVC web 框架*
- 
+# 🚀 MVC Web Framework
+
+A lightweight Python Web MVC framework built on top of low-level Socket and HTTP protocols. It supports core features such as custom routing, template rendering, ORM-based database access, and concurrent request handling — ideal for learning web architecture fundamentals and backend engineering design.
+
+![Demo](./assets/webframework.gif)
+---
 
 
-- 直接使用底层的 **Socket** 代码编写Web Server功能，具备网络请求和响应的收发和监听功能，在架构中负责：转发请求数据到 Web 框架和发送返回的响应至指定客户端
+## 🌐 HTTP Server
 
-- 采用的MVC设计中，**Control** 部分由自制的Web 框架实现，实现了解释HTTP请求为易用实例、注册路由与路由函数映射、HTTP 响应数据组装接口、HTML 模板渲染、错误页面和重定向接口等功能，可以处理静态资源、表单、Ajax请求，在架构负责：解释请求，路由分发、生成响应返回
- 
-- **Modle** 部分通过 **自制的ORM** 实现，抽象了增删改查接口的基类，同时可以对不同类型的数据进行实例化形式的数据使用，封装了针对不同的数据操作函数
+- Implements HTTP server using native Python `socket`
+- Supports request listening, response sending, Keep-Alive, etc.
+- Custom parsing and construction of raw HTTP messages
+- Wraps requests into `Request` objects for use in the framework
+- Built-in thread pool for handling **concurrent connections**
 
-- **View**部分使用Jinja2模板语言，用于通过模板生成网页HTML代码
+---
 
+## 🧱 MVC Architecture
 
-- 可以实现用户注册、登录功能，密码 Hash 加盐保护，微博留言与评论的 CRUD，用户管理功能
+### 🧩 Model (M) — ORM via Meta Programming
 
+- Utilizes Python metaclasses to define ORM mappings with Join support
+- Provides base methods for database operations (select, insert, update, delete)
+- Supports instantiating and abstracting data models
 
-----------
-![](https://github.com/Armrun/Flask--bbs1.1/blob/master/git图/web%20框架.gif)
+### 🎨 View (V) — Jinja2 Template Rendering
+
+- Integrates `Jinja2` for template rendering and data binding
+- Supports template inheritance, component reuse, and modular views
+- Compatible with HTML and JSON response formats
+
+### ⚙️ Controller (C) — Routing and Module Management
+
+- Uses high-order functions and hash tables to implement routing dispatch
+- Supports decorators to register view functions and apply permission checks
+- Routing supports regex matching and parameter binding
+
+---
+
+## ✨ Framework Features
+
+- ✅ Routing decorators for controllers
+- ✅ Supports HTML / JSON / Form / Redirect / Error responses
+- ✅ Session management system
+- ✅ Permission-check decorators
+- ✅ Static file serving (CSS / JS / images, etc.)
+
+---
+
+## 🧰 Tech Stack
+
+- Native Python socket / threading
+- Jinja2 template engine
+- MySQL support via custom ORM abstraction
+
+---
+
+## 📦 Example: Running the Project
+
+### 🚀 Getting Started
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Initialize the MySQL database
+python reset.py
+
+# Start the server
+python server.py
